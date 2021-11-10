@@ -13,7 +13,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: ./Experling-Backend/
+        working-directory: ./Experling-API/
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
