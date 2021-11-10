@@ -13,7 +13,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: ./Experling-Backend/
+        working-directory: C:\Users\Joris\Documents\Fontys\Semester 3\GItHub Experling\Experling-Backend\Experling-API
 
     steps:
     - uses: actions/checkout@v2
