@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataAccess.Data;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Experling_API
@@ -36,7 +38,9 @@ namespace Experling_API
                 });
             });
 
-           
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionString")));
+
+            services.AddControllers();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
