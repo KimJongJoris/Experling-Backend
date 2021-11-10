@@ -13,7 +13,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: ./Experling-Backend/Experling-API
+        working-directory: ./Experling-Backend/
 
     steps:
     - uses: actions/checkout@v2
