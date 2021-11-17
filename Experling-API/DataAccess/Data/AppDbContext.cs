@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using DataAccess.Models;
 
 namespace DataAccess.Data
 {
@@ -11,8 +12,9 @@ namespace DataAccess.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-        }
- 
 
+        }
+
+        public DbSet<CustomerModel> Customers { get; set; }
     }
 }

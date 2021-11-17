@@ -13,6 +13,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
+using DataAccess.Interfaces;
+using Experling_API.Repository;
 
 
 namespace Experling_API
@@ -42,6 +44,8 @@ namespace Experling_API
 
             services.AddControllers();
 
+            services.AddScoped <ICustomerRepository, CustomerRepository>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -58,6 +62,7 @@ namespace Experling_API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Experling_API v1"));
             }
+
 
             app.UseHttpsRedirection();
 
