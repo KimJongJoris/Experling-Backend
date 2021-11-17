@@ -58,8 +58,18 @@ namespace Experling_API.Controllers
 
             return await customerRepository.UpdateCustomer(customer);
         }
-        
 
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<CustomerModel>> DeleteCustomer(int id)
+        {
+            var customerToDelete = await customerRepository.GetCustomerById(id);
+            if (customerToDelete == null)
+              {
+                    return NotFound();
+              }
+
+            return await customerRepository.DeleteCustomer(id); 
+        }
 
     }
 }

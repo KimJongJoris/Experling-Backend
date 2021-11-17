@@ -52,14 +52,16 @@ namespace Experling_API.Repository
             return null;
         }
 
-        public async void DeleteCustomer(int CustomerId)
+        public async Task<CustomerModel> DeleteCustomer(int CustomerId)
         {
             var result = await _appDbContext.Customers.FirstOrDefaultAsync(e => e.id == CustomerId);
             if (result != null)
             {
                 _appDbContext.Customers.Remove(result);
                 await _appDbContext.SaveChangesAsync();
+                return result;
             }
+            return null;
         }
 
 

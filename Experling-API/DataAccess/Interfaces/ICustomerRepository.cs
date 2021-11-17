@@ -14,7 +14,7 @@ namespace DataAccess.Interfaces
             Task<CustomerModel> GetCustomerById(int id);
             Task<CustomerModel> AddCustomer (CustomerModel Customer);
             Task<CustomerModel> UpdateCustomer (CustomerModel Customer);
-            void DeleteCustomer(int id);
+            Task<CustomerModel> DeleteCustomer(int id);
         }
     }
 
