@@ -64,9 +64,9 @@ namespace Experling_API.Controllers
         {
             var customerToDelete = await customerRepository.GetCustomerById(id);
             if (customerToDelete == null)
-              {
+            {
                     return NotFound();
-              }
+            }
 
             return await customerRepository.DeleteCustomer(id); 
         }
