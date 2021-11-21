@@ -11,9 +11,9 @@ namespace DataAccess.Interfaces
     public interface ITicketRepository
     {
         Task<IEnumerable<TicketModel>> GetTickets();
-        Task<TicketModel> GetTicketById();
-        Task<TicketModel> AddTicket();
-        Task<TicketModel> UpdateTicket();
-        Task<TicketModel> DeleteTicket();
+        Task<TicketModel> GetTicketById(int id);
+        Task<TicketModel> AddTicket(TicketModel Ticket);
+        Task<TicketModel> UpdateTicket(TicketModel Ticket);
+        Task<TicketModel> DeleteTicket(int id);
     }
 }

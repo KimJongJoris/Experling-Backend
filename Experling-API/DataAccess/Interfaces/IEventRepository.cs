@@ -10,9 +10,9 @@ namespace DataAccess.Interfaces
     public interface IEventRepository
     {
         Task<IEnumerable<EventModel>> GetEvents();
-        Task<EventModel> GetEventById();
-        Task<EventModel> AddEvent();
-        Task<EventModel> UpdateEvent();
-        Task<EventModel> DeleteEvent();
+        Task<EventModel> GetEventById(int id);
+        Task<EventModel> AddEvent(EventModel Event);
+        Task<EventModel> UpdateEvent(EventModel Event);
+        Task<EventModel> DeleteEvent(int id);
     }
 }
