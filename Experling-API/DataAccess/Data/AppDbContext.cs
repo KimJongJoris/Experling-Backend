@@ -16,7 +16,9 @@ namespace DataAccess.Data
         }
 
         public DbSet<CustomerModel> Customers { get; set; }
-
         public DbSet<BandModel> Bands { get; set; }
+        public DbSet<VenueModel> Venues { get; set; }
+        public DbSet<TicketModel> Tickets { get; set; }
+        public DbSet<EventModel> Events { get; set; }
     }
 }
