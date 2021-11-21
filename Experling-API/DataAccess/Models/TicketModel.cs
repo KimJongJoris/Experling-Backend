@@ -13,7 +13,7 @@ namespace DataAccess.Models
         public int Eventid { get; set; }
         public string CustomerName { get; set; }
         public string CustomerEmail { get; set; }
-        public int AgeCheck { get; set; }
+        public byte AgeCheck { get; set; }
         public string GUid { get; set; }
     }
 }

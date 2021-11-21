@@ -46,6 +46,9 @@ namespace Experling_API
 
             services.AddScoped <ICustomerRepository, CustomerRepository>();
             services.AddScoped<IBandRepository, BandRepository>();
+            services.AddScoped<IVenueRepository, VenueRepository>();
+            services.AddScoped<ITicketRepository, TicketRepository>();
+            services.AddScoped<IEventRepository, EventRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
