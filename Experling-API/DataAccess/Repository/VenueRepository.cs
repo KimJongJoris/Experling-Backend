@@ -52,10 +52,17 @@ namespace DataAccess.Repository
             return null;
         }
 
-        public async void DeleteVenue(VenueModel venue)
+        public async Task<VenueModel> DeleteVenue(int id )
         {
-            _appDbContext.Venues.Remove(venue);
-            await _appDbContext.SaveChangesAsync();
+            var result = await _appDbContext.Venues.FirstOrDefaultAsync(e => e.id == id);
+            if (result != null)
+            {
+                _appDbContext.Venues.Remove(result);
+                await _appDbContext.SaveChangesAsync();
+                return result;
+            }
+
+            return null;
         }
 
     }

@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataAccess.Interfaces;
-using DataAccess.Models;
+using Common.Interfaces.Logic;
+using Common.Models;
 
 namespace Experling_API.Controllers
 {
@@ -12,23 +12,23 @@ namespace Experling_API.Controllers
     [ApiController]
     public class VenueController : ControllerBase
     {
-        private readonly IVenueRepository venueRepository;
+        private readonly IVenueLogic venueLogic;
 
-        public VenueController(IVenueRepository venueRepository)
+        public VenueController(IVenueLogic venueRepository)
         {
-            this.venueRepository = venueRepository;
+            this.venueLogic = venueRepository;
         }
 
         [HttpGet]
         public async Task<ActionResult> GetVenues()
         {
-            return Ok(await venueRepository.GetVenues());
+            return Ok(await venueLogic.GetVenues());
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult<VenueModel>> GetVenueById(int id)
         {
-            var result = await venueRepository.GetVenueById(id);
+            var result = await venueLogic.GetVenueById(id);
             if (result == null) return NotFound();
 
             return result;
@@ -37,7 +37,7 @@ namespace Experling_API.Controllers
         [HttpPost]
         public async Task<ActionResult<VenueModel>> AddVenue(VenueModel Venue)
         {
-            var createdBand = await venueRepository.AddVenue(Venue);
+            var createdBand = await venueLogic.AddVenue(Venue);
             return CreatedAtAction(nameof(GetVenueById),
                 new { id = createdBand.id }, createdBand);
         }
@@ -48,26 +48,26 @@ namespace Experling_API.Controllers
             if (id != venue.id)
                 return BadRequest("Band Id doesn't match!");
 
-            var bandToUpdate = await venueRepository.GetVenueById(id);
+            var bandToUpdate = await venueLogic.GetVenueById(id);
 
             if (bandToUpdate == null)
             {
                 return NotFound();
             }
 
-            return await venueRepository.UpdateVenue(venue);
+            return await venueLogic.UpdateVenue(venue);
         }
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<VenueModel>> DeleteVenue(int id)
         {
-            var bandToDelete = await venueRepository.GetVenueById(id);
+            var bandToDelete = await venueLogic.GetVenueById(id);
             if (bandToDelete == null)
             {
                 return NotFound();
             }
 
-            return await venueRepository.DeleteVenue(id);
+            return await venueLogic.DeleteVenue(id);
         }
 
 

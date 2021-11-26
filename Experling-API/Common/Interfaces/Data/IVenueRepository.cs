@@ -13,6 +13,6 @@ namespace Common.Interfaces.Data
         Task<VenueModel> GetVenueById(int id);
         Task<VenueModel> AddVenue(VenueModel Venue);
         Task<VenueModel> UpdateVenue(VenueModel Venue);
-        void DeleteVenue(VenueModel venue);
+        Task<VenueModel> DeleteVenue(int id);
     }
 }

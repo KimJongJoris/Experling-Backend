@@ -17,10 +17,10 @@ namespace Logic
         {
             _bandRepository = bandRepository;
         }
-
+        
         public Task<IEnumerable<BandModel>> getAllBands()
         {
-            return _bandRepository.GetBands();
+            return _bandRepository.GetBands(); 
         }
 
         public Task<BandModel> GetBandById(int BandId)
