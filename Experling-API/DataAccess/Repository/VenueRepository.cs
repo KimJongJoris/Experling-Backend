@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Interfaces.Data;
+using Common.Models;
 using DataAccess.Data;
-using DataAccess.Interfaces;
-using DataAccess.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Experling_API.Repository
+namespace DataAccess.Repository
 {
     public class VenueRepository : IVenueRepository
     {
@@ -38,7 +37,7 @@ namespace Experling_API.Repository
 
         public async Task<VenueModel> UpdateVenue(VenueModel Venue)
         {
-            var result = await _appDbContext.Venues.FirstOrDefaultAsync(e => e.id == Venue.id);
+            var result = await GetVenueById(Venue.id);
             if (result != null)
             {
                 result.VenueName = Venue.VenueName;
@@ -53,17 +52,10 @@ namespace Experling_API.Repository
             return null;
         }
 
-        public async Task<VenueModel> DeleteVenue(int VenueId)
+        public async void DeleteVenue(VenueModel venue)
         {
-            var result = await _appDbContext.Venues.FirstOrDefaultAsync(e => e.id == VenueId);
-            if (result != null)
-            {
-                _appDbContext.Venues.Remove(result);
-                await _appDbContext.SaveChangesAsync();
-                return result;
-            }
-
-            return null;
+            _appDbContext.Venues.Remove(venue);
+            await _appDbContext.SaveChangesAsync();
         }
 
     }

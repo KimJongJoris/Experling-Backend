@@ -10,6 +10,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Experling-API", "Experling-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{9F111F15-6EFC-423A-9C41-90372258BD39}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTesting", "UnitTesting\UnitTesting.csproj", "{83DF6AE9-DE67-40F3-9835-B546607B54A2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9F111F15-6EFC-423A-9C41-90372258BD39} = {9F111F15-6EFC-423A-9C41-90372258BD39}
+		{1397FC42-6185-4F69-8CC7-4C8101A1B2BA} = {1397FC42-6185-4F69-8CC7-4C8101A1B2BA}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{723BC4E3-2B0A-4BA8-9850-826AA2BFB9CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{1397FC42-6185-4F69-8CC7-4C8101A1B2BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +34,18 @@ Global
 		{9F111F15-6EFC-423A-9C41-90372258BD39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F111F15-6EFC-423A-9C41-90372258BD39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F111F15-6EFC-423A-9C41-90372258BD39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83DF6AE9-DE67-40F3-9835-B546607B54A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83DF6AE9-DE67-40F3-9835-B546607B54A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83DF6AE9-DE67-40F3-9835-B546607B54A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83DF6AE9-DE67-40F3-9835-B546607B54A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{723BC4E3-2B0A-4BA8-9850-826AA2BFB9CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{723BC4E3-2B0A-4BA8-9850-826AA2BFB9CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{723BC4E3-2B0A-4BA8-9850-826AA2BFB9CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{723BC4E3-2B0A-4BA8-9850-826AA2BFB9CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1397FC42-6185-4F69-8CC7-4C8101A1B2BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1397FC42-6185-4F69-8CC7-4C8101A1B2BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1397FC42-6185-4F69-8CC7-4C8101A1B2BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1397FC42-6185-4F69-8CC7-4C8101A1B2BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

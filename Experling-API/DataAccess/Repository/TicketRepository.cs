@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Interfaces.Data;
+using Common.Models;
 using DataAccess.Data;
-using DataAccess.Interfaces;
-using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Experling_API.Repository
@@ -37,14 +37,14 @@ namespace Experling_API.Repository
 
         public async Task<TicketModel> UpdateTicket(TicketModel Ticket)
         {
-            var result = await _appDbContext.Tickets.FirstOrDefaultAsync(e => e.id == Ticket.id);
+            var result = await GetTicketById(Ticket.id);
             if (result != null)
             {
                 result.CustomerName = Ticket.CustomerName;
                 result.CustomerEmail = Ticket.CustomerEmail;
                 result.AgeCheck = Ticket.AgeCheck;
                 result.Eventid = Ticket.Eventid;
-                result.Customerid = Ticket.Eventid;
+                result.Customerid = Ticket.Customerid;
 
                 await _appDbContext.SaveChangesAsync();
                 return result;
@@ -56,7 +56,7 @@ namespace Experling_API.Repository
 
         public async Task<TicketModel> DeleteTicket(int TicketId)
         {
-            var result = await _appDbContext.Tickets.FirstOrDefaultAsync(e => e.id == TicketId);
+            var result = await GetTicketById(TicketId);
             if (result != null)
             {
                 _appDbContext.Tickets.Remove(result);

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataAccess.Models;
-using Microsoft.EntityFrameworkCore;
-using DataAccess.Interfaces;
+using Common.Interfaces.Data;
+using Common.Models;
 using DataAccess.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Experling_API.Repository
 {
@@ -23,9 +23,9 @@ namespace Experling_API.Repository
             return await _appDbContext.Customers.ToListAsync();
         }
 
-        public async Task<CustomerModel> GetCustomerById(int EmployeeId)
+        public async Task<CustomerModel> GetCustomerById(int id)
         {
-            return await _appDbContext.Customers.FirstOrDefaultAsync(e => e.id == EmployeeId);
+            return await Task.FromResult(_appDbContext.Customers.Find(id));
         }
 
         public async Task<CustomerModel> AddCustomer(CustomerModel Customer)

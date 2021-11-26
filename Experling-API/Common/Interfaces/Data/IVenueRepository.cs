@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccess.Models;
+using Common.Models;
 
-namespace DataAccess.Interfaces
+namespace Common.Interfaces.Data
 {
     public interface IVenueRepository
     {
@@ -13,6 +13,6 @@ namespace DataAccess.Interfaces
         Task<VenueModel> GetVenueById(int id);
         Task<VenueModel> AddVenue(VenueModel Venue);
         Task<VenueModel> UpdateVenue(VenueModel Venue);
-        Task<VenueModel> DeleteVenue(int id);
+        void DeleteVenue(VenueModel venue);
     }
 }

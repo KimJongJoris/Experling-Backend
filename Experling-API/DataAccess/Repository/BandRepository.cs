@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataAccess.Interfaces;
+using Common.Interfaces.Data;
 using DataAccess.Data;
-using DataAccess.Models;
+using Common.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Experling_API.Repository
+namespace DataAccess.Repository
 {
     public class BandRepository : IBandRepository
     {

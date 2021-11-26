@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using DataAccess.Interfaces;
+using Common.Interfaces.Data;
+using Common.Models;
 using DataAccess.Data;
-using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Experling_API.Repository
+namespace DataAccess.Repository
 {
     public class EventRepository : IEventRepository
     {

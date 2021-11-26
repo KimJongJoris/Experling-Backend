@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataAccess.Models;
-using DataAccess.Interfaces;
+using Common.Interfaces.Data;
+using Common.Interfaces.Logic;
+using Common.Models;
 
 namespace Experling_API.Controllers
 {
@@ -12,23 +13,23 @@ namespace Experling_API.Controllers
     [ApiController]
     public class BandController : ControllerBase
     {
-        private readonly IBandRepository bandRepository;
+        private readonly IBandLogic _bandLogic;
 
-        public BandController(IBandRepository bandRepository)
+        public BandController(IBandLogic bandLogic)
         {
-            this.bandRepository = bandRepository;
+            _bandLogic = bandLogic;
         }
 
         [HttpGet]
         public async Task<ActionResult> GetBands()
         {
-            return Ok(await bandRepository.GetBands());
+            return Ok(_bandLogic.getAllBands());
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult<BandModel>> GetBandById(int id)
         {
-            var result = await bandRepository.GetBandById(id);
+            var result = await _bandLogic.GetBandById(id);
             if (result == null) return NotFound();
 
             return result;
@@ -37,7 +38,7 @@ namespace Experling_API.Controllers
         [HttpPost]
         public async Task<ActionResult<BandModel>> AddBand(BandModel Band)
         {
-            var createdBand = await bandRepository.AddBand(Band);
+            var createdBand = await _bandLogic.AddBand(Band);
             return CreatedAtAction(nameof(GetBandById),
                 new{id = createdBand.id}, createdBand);
         }
@@ -48,26 +49,26 @@ namespace Experling_API.Controllers
             if (id != band.id)
                 return BadRequest("Band Id doesn't match!");
 
-            var bandToUpdate = await bandRepository.GetBandById(id);
+            var bandToUpdate = await _bandLogic.GetBandById(id);
 
             if (bandToUpdate == null)
             {
                 return NotFound();
             }
 
-            return await bandRepository.UpdateBand(band);
+            return await _bandLogic.UpdateBand(band);
         }
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<BandModel>> DeleteBand(int id)
         {
-            var bandToDelete = await bandRepository.GetBandById(id);
+            var bandToDelete = await _bandLogic.GetBandById(id);
             if (bandToDelete == null)
             {
                 return NotFound();
             }
 
-            return await bandRepository.DeleteBand(id);
+            return await _bandLogic.DeleteBand(id);
         }
 
         
