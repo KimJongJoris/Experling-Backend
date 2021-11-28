@@ -6,12 +6,8 @@ using Bogus;
 using Common.Interfaces.Data;
 using Common.Interfaces.Logic;
 using Common.Models;
-using DataAccess.Data;
-using DataAccess.Repository;
 using Moq;
 using Xunit;
-using Experling_API.Repository;
-using Microsoft.EntityFrameworkCore;
 using Logic;
 
 namespace UnitTesting

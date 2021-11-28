@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataAccess.Models;
-using DataAccess.Interfaces;
+using Common.Interfaces.Logic;
+using Common.Models;
 
 
 namespace Experling_API.Controllers
@@ -13,23 +13,23 @@ namespace Experling_API.Controllers
     [ApiController]
     public class TicketController : ControllerBase
     {
-        private readonly ITicketRepository ticketRepository;
+        private readonly ITicketLogic _ticketLogic;
 
-        public TicketController(ITicketRepository ticketRepository)
+        public TicketController(ITicketLogic ticketLogic)
         {
-            this.ticketRepository = ticketRepository;
+            _ticketLogic = ticketLogic;
         }
 
         [HttpGet]
         public async Task<ActionResult> GetTickets()
         {
-            return Ok(await ticketRepository.GetTickets());
+            return Ok(await _ticketLogic.GetTickets());
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult<TicketModel>> GetTicketById(int id)
         {
-            var result = await ticketRepository.GetTicketById(id);
+            var result = await _ticketLogic.GetTicketById(id);
             if (result == null) return NotFound();
 
             return result;
@@ -38,7 +38,7 @@ namespace Experling_API.Controllers
         [HttpPost]
         public async Task<ActionResult<TicketModel>> AddTicket(TicketModel Ticket)
         {
-            var createdBand = await ticketRepository.AddTicket(Ticket);
+            var createdBand = await _ticketLogic.AddTicket(Ticket);
             return CreatedAtAction(nameof(GetTicketById),
                 new { id = createdBand.id }, createdBand);
         }
@@ -49,26 +49,26 @@ namespace Experling_API.Controllers
             if (id != ticket.id)
                 return BadRequest("Band Id doesn't match!");
 
-            var bandToUpdate = await ticketRepository.GetTicketById(id);
+            var bandToUpdate = await _ticketLogic.GetTicketById(id);
 
             if (bandToUpdate == null)
             {
                 return NotFound();
             }
 
-            return await ticketRepository.UpdateTicket(ticket);
+            return await _ticketLogic.UpdateTicket(ticket);
         }
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<TicketModel>> DeleteTicket(int id)
         {
-            var bandToDelete = await ticketRepository.GetTicketById(id);
+            var bandToDelete = await _ticketLogic.GetTicketById(id);
             if (bandToDelete == null)
             {
                 return NotFound();
             }
 
-            return await ticketRepository.DeleteTicket(id);
+            return await _ticketLogic.DeleteTicket(id);
         }
 
 

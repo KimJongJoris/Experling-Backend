@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataAccess.Interfaces;
-using DataAccess.Models;
+using Common.Interfaces.Logic;
+using Common.Models;
 
 namespace Experling_API.Controllers
 {
@@ -13,23 +13,23 @@ namespace Experling_API.Controllers
 
     public class EventController : ControllerBase
     {
-        private readonly IEventRepository eventRepository;
+        private readonly IEventLogic _eventLogic;
 
-        public EventController(IEventRepository eventRepository)
+        public EventController(IEventLogic eventLogic)
         {
-            this.eventRepository = eventRepository;
+            _eventLogic = eventLogic;
         }
 
         [HttpGet]
         public async Task<ActionResult> GetEvents()
         {
-            return Ok(await eventRepository.GetEvents());
+            return Ok(await _eventLogic.GetEvents());
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult<EventModel>> GetCustomerById(int id)
         {
-            var result = await eventRepository.GetEventById(id);
+            var result = await _eventLogic.GetEventById(id);
 
             if (result == null) return NotFound();
 
@@ -39,7 +39,7 @@ namespace Experling_API.Controllers
         [HttpPost]
         public async Task<ActionResult<EventModel>> CreateEvent(EventModel Event)
         {
-            var createdEvent = await eventRepository.AddEvent(Event);
+            var createdEvent = await _eventLogic.AddEvent(Event);
 
             return CreatedAtAction(nameof(GetEvents),
                 new {id = createdEvent.id}, createdEvent);
@@ -51,24 +51,24 @@ namespace Experling_API.Controllers
             if (id != Event.id)
                 return BadRequest("Customer Id doesn't match!");
 
-            var customerToUpdate = await eventRepository.GetEventById(id);
+            var customerToUpdate = await _eventLogic.GetEventById(id);
 
             if (customerToUpdate == null)
                 return NotFound();
 
-            return await eventRepository.UpdateEvent(Event);
+            return await _eventLogic.UpdateEvent(Event);
         }
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<EventModel>> DeleteEvent(int id)
         {
-            var customerToDelete = await eventRepository.GetEventById(id);
+            var customerToDelete = await _eventLogic.GetEventById(id);
             if (customerToDelete == null)
             {
                 return NotFound();
             }
 
-            return await eventRepository.DeleteEvent(id);
+            return await _eventLogic.DeleteEvent(id);
         }
 
     }
