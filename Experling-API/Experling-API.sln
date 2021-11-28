@@ -16,9 +16,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTesting", "UnitTesting\
 		{1397FC42-6185-4F69-8CC7-4C8101A1B2BA} = {1397FC42-6185-4F69-8CC7-4C8101A1B2BA}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{723BC4E3-2B0A-4BA8-9850-826AA2BFB9CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{723BC4E3-2B0A-4BA8-9850-826AA2BFB9CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{1397FC42-6185-4F69-8CC7-4C8101A1B2BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{1397FC42-6185-4F69-8CC7-4C8101A1B2BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

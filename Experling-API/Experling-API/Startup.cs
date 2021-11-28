@@ -11,10 +11,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Interfaces.Data;
+using Common.Interfaces.Logic;
 using DataAccess.Data;
+using DataAccess.Repository;
 using Microsoft.EntityFrameworkCore;
-using DataAccess.Interfaces;
 using Experling_API.Repository;
+using Logic;
 
 
 namespace Experling_API
@@ -42,6 +45,13 @@ namespace Experling_API
             services.AddScoped<IVenueRepository, VenueRepository>();
             services.AddScoped<ITicketRepository, TicketRepository>();
             services.AddScoped<IEventRepository, EventRepository>();
+
+            services.AddScoped<ICustomerLogic, CustomerLogic>();
+            services.AddScoped<IBandLogic, BandLogic>();
+            services.AddScoped<IVenueLogic, VenueLogic>();
+            services.AddScoped<ITicketLogic, TicketLogic>();
+            services.AddScoped<IEventLogic, EventLogic>();
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
