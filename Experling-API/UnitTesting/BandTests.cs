@@ -17,11 +17,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace UnitTesting
 {
-    public class UnitTest1
+    public class BandTests
     {
         public Mock<IBandRepository> _BandInterfaceMock;
 
-        public UnitTest1()
+        public BandTests()
         {
             _BandInterfaceMock= new Mock<IBandRepository>();
         }
@@ -44,6 +44,8 @@ namespace UnitTesting
 
             Assert.IsType(typeof(Task<BandModel>), result);
         }
+
+
 
     }
 }
