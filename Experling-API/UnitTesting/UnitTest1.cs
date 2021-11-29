@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
@@ -6,9 +8,12 @@ using Bogus;
 using Common.Interfaces.Data;
 using Common.Interfaces.Logic;
 using Common.Models;
+using Experling_API.Controllers;
 using Moq;
 using Xunit;
 using Logic;
+using FakeItEasy;
+using Microsoft.AspNetCore.Mvc;
 
 namespace UnitTesting
 {
@@ -20,9 +25,9 @@ namespace UnitTesting
         {
             _BandInterfaceMock= new Mock<IBandRepository>();
         }
-
+        
         [Fact]
-        public async void Test1()
+        public async void Get_Band_From_Id()
         {
             Faker<BandModel> faker = new Faker<BandModel>();
             faker.RuleFor(b => b.id, F => F.UniqueIndex);
@@ -37,9 +42,8 @@ namespace UnitTesting
 
             var result = bandLogic.GetBandById(band.id);
 
-            Assert.IsType(typeof(BandModel), result);
-
-
+            Assert.IsType(typeof(Task<BandModel>), result);
         }
+
     }
 }

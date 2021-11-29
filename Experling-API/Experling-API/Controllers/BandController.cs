@@ -23,7 +23,7 @@ namespace Experling_API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetBands()
         {
-            return Ok(_bandLogic.getAllBands());
+             return Ok(await _bandLogic.getAllBands());
         }
 
         [HttpGet("{id:int}")]
