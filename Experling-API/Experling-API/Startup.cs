@@ -36,7 +36,26 @@ namespace Experling_API
         {
             services.AddCors();
 
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionString")));
+            string envConnectionString = Environment.GetEnvironmentVariable("ConnectionString");
+            if (envConnectionString != null)
+            {
+                //ENV only available in Docker container
+                services.AddDbContext<AppDbContext>(options => options.UseSqlServer(envConnectionString));
+
+                //Ensuring the database is created following Entity framework
+                using (var scope = services.BuildServiceProvider().CreateScope())
+                {
+                    using (var context = scope.ServiceProvider.GetService<AppDbContext>())
+                    {
+                        context.Database.EnsureCreated();
+                    }
+                }
+            }
+            else
+            {
+                services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionString")));
+            }
+            
 
             services.AddControllers();
 
@@ -76,7 +95,7 @@ namespace Experling_API
                 .SetIsOriginAllowed(origin => true) // allow any origin
                 .AllowCredentials());
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
 

@@ -32,3 +32,4 @@ msbuild.wrn
 
 # Visual Studio 2019
 .vs/
+.idea/

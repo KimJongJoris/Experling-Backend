@@ -8,21 +8,47 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    name: Build
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: ./Experling-API/
     
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: 5.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      
+  unit-test:
+    name: Unit Tests
+    needs: [ build ]
+    runs-on: ubuntu-20.04
     defaults:
       run:
         working-directory: ./Experling-API/
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: 5.0.x
+      - name: Test
+        run: dotnet test
+        
+  docker:
+    defaults:
+      run:
+        working-directory: ./Experling-API/
+    name: Docker build
+    runs-on: ubuntu-20.04
+    needs: [ build, unit-test ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the image
+        run: docker-compose up -d
+  
+

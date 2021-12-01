@@ -1,0 +1,34 @@
+﻿version: "3.8"
+
+services:
+  api:
+    container_name: ExSperling-API
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: ./Experling-API/Dockerfile
+    ports:
+      - 5000:80
+      - 5001:443
+    environment:
+      - ConnectionString=Server=db,1433;Database=API;User=sa;Password=daWDwj3489awD
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80;https://+:443;
+      - ASPNETCORE_HTTPS_PORT=5001
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Experling
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/dev_cert.pfx
+    depends_on:
+      - db
+    volumes:
+      - ./https/:/https/
+  db:
+    container_name: ExSperling-Database
+    image: mcr.microsoft.com/mssql/server:2019-CU14-ubuntu-20.04
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=daWDwj3489awD
+      - MSSQL_PID=Developer
+    ports:
+      - 1433:1433
+    volumes:
+      - ./MSSQL-Data:/var/opt/mssql/data
