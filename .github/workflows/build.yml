@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-20.04
+    runs-on: windows-latest
     defaults:
       run:
         working-directory: ./Experling-API/
