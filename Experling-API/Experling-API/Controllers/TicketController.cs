@@ -59,6 +59,9 @@ namespace Experling_API.Controllers
             return await _ticketLogic.UpdateTicket(ticket);
         }
 
+
+
+
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<TicketModel>> DeleteTicket(int id)
         {
