@@ -71,6 +71,7 @@ namespace Experling_API.Controllers
             return await _bandLogic.DeleteBand(id);
         }
 
+
         
     }
     
