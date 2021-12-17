@@ -70,6 +70,7 @@ namespace Experling_API.Controllers
             }
 
             return await customerLogic.DeleteCustomer(id); 
+
         }
 
     }
