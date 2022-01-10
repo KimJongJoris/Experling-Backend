@@ -24,6 +24,7 @@ services:
   db:
     container_name: ExSperling-Database
     image: mcr.microsoft.com/mssql/server:2019-CU14-ubuntu-20.04
+    user: root
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=daWDwj3489awD
