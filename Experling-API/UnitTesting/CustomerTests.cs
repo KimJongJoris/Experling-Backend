@@ -42,7 +42,7 @@ namespace UnitTesting
 
             var result = customerLogic.GetCustomerById(customer.id);
 
-            Assert.IsType(typeof(Task<CustomerModel>), result);
+            Assert.IsType(typeof(Task), result);
         }
 
 
