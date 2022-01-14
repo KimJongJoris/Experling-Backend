@@ -20,11 +20,11 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore Experling dependencies
-      run: dotnet restore ./Experling-API/Experling-API/ProductComponent.csproj 
+      run: dotnet restore ./Experling-API/Experling-API/Experling-API.csproj 
     - name: Build Experling
-      run: dotnet build ./Experling-API/Experling-API/ProductComponent.csproj   --no-restore
+      run: dotnet build ./Experling-API/Experling-API/Experling-API.csproj    --no-restore
     - name: Test Experling
-      run: dotnet test ./Experling-API/Experling-API/ProductComponent.csproj  --no-build --verbosity normal
+      run: dotnet test ./Experling-API/Experling-API/Experling-API.csproj   --no-build --verbosity normal
         
     - name: Docker Build & Push Action
       # You may pin to the exact commit or the version.
