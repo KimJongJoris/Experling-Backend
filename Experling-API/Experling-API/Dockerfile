@@ -4,10 +4,10 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-WORKDIR /src
+WORKDIR /Experling-API
 COPY ["Experling-API/Experling-API.csproj", "Experling-API/"]
 RUN dotnet restore "Experling-API/Experling-API.csproj"
-WORKDIR "/src/Experling-API"
+WORKDIR "/Experling-API/Experling-API"
 COPY . .
 RUN dotnet build "Experling-API.csproj" -c Release -o /app/build
 
