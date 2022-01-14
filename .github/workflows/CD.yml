@@ -34,7 +34,7 @@ jobs:
           context: ./
           file: ./Experling-API/Experling-API/Dockerfile
           run: docker build . -f ./Experling-API/Experling-API/Dockerfile
-          builder: ./Experling-API/Experling-API/Experling-API.csproj
+          builder: Experling-API.csproj
           push: true
           tags:  ${{ secrets.DOCKER_HUB_USERNAME }}/experlingapi:latest
       
