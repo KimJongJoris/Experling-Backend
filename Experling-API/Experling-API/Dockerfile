@@ -7,8 +7,8 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["Experling-API/Experling-API.csproj", "Experling-API/"]
 RUN dotnet restore "Experling-API/Experling-API.csproj"
-COPY . .
 WORKDIR "/src/Experling-API"
+COPY . .
 RUN dotnet build "Experling-API.csproj" -c Release -o /app/build
 
 FROM build AS publish
