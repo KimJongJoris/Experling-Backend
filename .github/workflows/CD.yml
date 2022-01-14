@@ -16,7 +16,7 @@ jobs:
       
     defaults:
       run:
-        working-directory: ./Experling-API/
+        working-directory: ./Experling-API/Experling-API
       
     steps:
       - name: Check Out Repo 
