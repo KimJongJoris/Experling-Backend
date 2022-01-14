@@ -39,7 +39,6 @@ jobs:
           context: ./
           file: ./Experling-API/Experling-API/Dockerfile
           run: docker build . -f ./Experling-API/Experling-API/Dockerfile
-          builder: ${{ steps.buildx.outputs.name }}
           push: true
           tags:  ${{ secrets.DOCKER_HUB_USERNAME }}/experlingapi:latest
       
